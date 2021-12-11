@@ -20,6 +20,7 @@ import java.util.Random;
 public class ResultPopUp {
 
     Integer selectedDie;
+    private ResultPopUp.UpdateLOGArray updateArrlogs;
 
 
     public ResultPopUp( String selectedDie){
@@ -44,11 +45,12 @@ public class ResultPopUp {
 
     //Set the location of the window on the screen
     popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-
+        updateArrlogs = (UpdateLOGArray) view.getContext();
     //Initialize the elements of our window, install the handler
 
     TextView result = popupView.findViewById(R.id.result);
 
+    //loop to show die is rolling on screen
         for (int i = 1; i <= 15; i++) {
 
             final Handler handler = new Handler();
@@ -58,6 +60,7 @@ public class ResultPopUp {
                     int randomVal = (int)(Math.random() * selectedDie) + 1;
                     result.setText(String.valueOf(randomVal));
                     Random rnd = new Random();
+                    //generating random text color every time loop execute
                     result.setTextColor(Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256)));
                 }
             }, 500 * i/10);
@@ -69,23 +72,20 @@ public class ResultPopUp {
 
 
     //Handler for clicking on the inactive zone of the window
-
     popupView.setOnTouchListener(new View.OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
-            updateLogs(result.getText().toString());
+            //adding result to log list when returned to main activity
+            updateArrlogs.updateLogs(result.getText().toString());
             //Close the window when clicked
             popupWindow.dismiss();
             return true;
         }
     });
 }
-    public void updateLogs(String addLog) {
-        // Shuffling the data of ArrayList using system time
-        ArrayList<String> logArr = MainActivity.logHistory;
-        logArr.add(addLog);
-        CustomAdapter adapter = new CustomAdapter(logArr);
-        //recyclerView.setAdapter(adapter);
+
+    public interface UpdateLOGArray {
+        void updateLogs(String newlog);
     }
 
 }

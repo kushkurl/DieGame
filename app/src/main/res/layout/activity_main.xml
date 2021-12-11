@@ -128,6 +128,21 @@
         app:layout_constraintHorizontal_bias="0.033"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/clearLogs"
+        android:layout_width="117dp"
+        android:layout_height="34dp"
+        android:backgroundTint="@color/white"
+        android:text="Clear Logs"
+        android:textColor="@color/black"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:cornerRadius="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.854"
+        app:layout_constraintStart_toEndOf="@+id/textView3" />
+
     <FrameLayout
         android:id="@+id/frmLayout"
         android:layout_width="match_parent"
@@ -136,7 +151,11 @@
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></FrameLayout>
+        app:layout_constraintTop_toTopOf="parent">
+
+
+
+    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

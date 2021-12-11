@@ -78,7 +78,7 @@ public class AddNewDie extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        //initializing different components
         view = inflater.inflate(R.layout.fragment_add_new_die, container, false);
         add= view.findViewById(R.id.addbutton);
         noOfSides = view.findViewById(R.id.newdie);
@@ -89,10 +89,10 @@ public class AddNewDie extends Fragment implements View.OnClickListener{
         return view;
     }
 
+    //update die type list on save button click on add fragment
     @Override
     public void onClick(View view) {
         diearray.updateDieList(noOfSides.getText().toString());
-
         FragmentManager myfragmentManager = getActivity().getSupportFragmentManager();
         while (myfragmentManager.getBackStackEntryCount() > 0) {
             myfragmentManager.popBackStackImmediate();
